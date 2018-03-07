@@ -13,35 +13,27 @@ require __DIR__ . '/../thinkphp/start.php';
   <title>聆听朝阳的美好</title>
   <!-- CSS 文件 -->
   <link rel="stylesheet" href="assets/css/foundation.css">
+  <style>
+    .row {
+        max-width: 100%;
+     }
+  </style>
 </head>
 
-<body id="blog">
-
+<body>
 <!-- 导航栏开始 -->
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
-    <li class="name">
-      <h1><a href="#">WebSiteName</a></h1>
-    </li>
-    <!-- 小屏幕上折叠按钮: 去掉 .menu-icon 类，可以去除图标。
-      如果需要只显示图片，可以删除 "Menu" 文本 -->
+    <li class="name"><h1><a href="#">WebSiteName</a></h1></li>
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
-
   <section class="top-bar-section">
     <ul class="left">
       <li class="active"><a href="#">Home</a></li>
-      <li class="has-dropdown">
-        <a href="#">Dropdown</a>
-        <ul class="dropdown">
-          <li><a href="#">Apple</a></li>
-          <li><a href="#">Banana</a></li>
-          <li><a href="#">Orange</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Kale</a></li>
-          <li><a href="#">Spinach</a></li>
-        </ul>
-      </li>
+      <li class="has-dropdown"><a href="#">Dropdown</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
     </ul>
   </section>
 </nav>
@@ -49,6 +41,15 @@ require __DIR__ . '/../thinkphp/start.php';
 <!-- 导航栏结束 -->
 
 <!-- banner start -->
+
+<!-- 主体内容 -->
+<div>
+    <div class="row">
+        <div class="medium-9 large-9 columns" style="background-color:yellow;">菜鸟教程</div>
+        <div class="medium-3 large-3 columns" style="background-color:pink;">菜鸟教程</div>
+    </div>
+</div>
+
 
 <!-- javascript -->
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
