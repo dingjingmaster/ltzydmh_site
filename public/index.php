@@ -7,9 +7,9 @@ require __DIR__ . '/../thinkphp/start.php';
 <html xml:lang="zh-Hans" lang="zh-Hans">
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="">
   <meta name="keywords" content="">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="">
+  <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>聆听朝阳的美好</title>
   <!-- CSS 文件 -->
