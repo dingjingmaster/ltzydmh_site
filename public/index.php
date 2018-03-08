@@ -14,18 +14,10 @@ require __DIR__ . '/../thinkphp/start.php';
   <title>聆听朝阳的美好</title>
   <!-- CSS 文件 -->
   <link rel="stylesheet" href="assets/css/foundation.css"/>
-
-  <style>
-    .row {
-        max-width: 100%;
-     }
-  </style>
+  <link rel="stylesheet" href="assets/css/main.css"/>
 </head>
 
-<body class="demo1">
-<!-- 雪花特效 -->
-
-
+<body>
 <!-- 导航栏开始 -->
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
@@ -47,32 +39,149 @@ require __DIR__ . '/../thinkphp/start.php';
 
 <!-- banner start -->
 
-<!-- 主体内容 -->
 <div>
+    <hr/>
     <div class="row">
+        <!-- 主体内容 -->
         <div class="medium-9 large-9 columns">
-            <article class="">
-                <div class="">
-                    <span><a href="" class="">article&nbsp;</a></span>
-                    <span>@amazeUI</span>
-                    <span>2015/10/9</span>
-                    <h3><a href="">陌上花开，可缓缓归矣。</a></h3>
-                    <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。</p>
-                    <p><a href="" class="">continue</a></p>
+            <article>
+                <div class="th">
+                    <h3><a id="passage_title" href="">陌上花开，可缓缓归矣。</a></h3>
+                    <span id="passage_category" class="label info">类别</span>
+                    <span id="passage_create_time"class="label">create</span>
+                    <span id="passage_update_time" class="label success">update</span>
+                    <span id="passage_status" class="label alert">status</span>
+                    <span id="passage_view" class="label warning">view</span>
+                    <blockquote id="passage_summary">那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。</blockquote>
                 </div>
             </article>
-            <article class="">
-                <div class="">
-                    <span><a href="" class="">article&nbsp;</a></span>
-                    <span>@amazeUI</span>
-                    <span>2015/10/9</span>
-                    <h3><a href="">陌上花开，可缓缓归矣。</a></h3>
-                    <p>那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。</p>
-                    <p><a href="" class="">continue</a></p>
+            <br/>
+            <article>
+                <div class="th">
+                    <h3><a id="passage_title" href="">陌上花开，可缓缓归矣。</a></h3>
+                    <span id="passage_category" class="label info">类别</span>
+                    <span id="passage_create_time"class="label">create</span>
+                    <span id="passage_update_time" class="label success">update</span>
+                    <span id="passage_status" class="label alert">status</span>
+                    <span id="passage_view" class="label warning">view</span>
+                    <blockquote id="passage_summary">那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。</blockquote>
+                </div>
+            </article>
+            <br/>
+            <article>
+                <div class="th">
+                    <h3><a id="passage_title" href="">陌上花开，可缓缓归矣。</a></h3>
+                    <span id="passage_category" class="label info">类别</span>
+                    <span id="passage_create_time"class="label">create</span>
+                    <span id="passage_update_time" class="label success">update</span>
+                    <span id="passage_status" class="label alert">status</span>
+                    <span id="passage_view" class="label warning">view</span>
+                    <blockquote id="passage_summary">那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。</blockquote>
+                </div>
+            </article>
+            <br/>
+            <article>
+                <div class="th">
+                    <h3><a id="passage_title" href="">陌上花开，可缓缓归矣。</a></h3>
+                    <span id="passage_category" class="label info">类别</span>
+                    <span id="passage_create_time"class="label">create</span>
+                    <span id="passage_update_time" class="label success">update</span>
+                    <span id="passage_status" class="label alert">status</span>
+                    <span id="passage_view" class="label warning">view</span>
+                    <blockquote id="passage_summary">那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。</blockquote>
+                </div>
+            </article>
+            <br/>
+            <article>
+                <div class="th">
+                    <h3><a id="passage_title" href="">陌上花开，可缓缓归矣。</a></h3>
+                    <span id="passage_category" class="label info">类别</span>
+                    <span id="passage_create_time"class="label">create</span>
+                    <span id="passage_update_time" class="label success">update</span>
+                    <span id="passage_status" class="label alert">status</span>
+                    <span id="passage_view" class="label warning">view</span>
+                    <blockquote id="passage_summary">那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。</blockquote>
+                </div>
+            </article>
+            <br/>
+            <article>
+                <div class="th">
+                    <h3><a id="passage_title" href="">陌上花开，可缓缓归矣。</a></h3>
+                    <span id="passage_category" class="label info">类别</span>
+                    <span id="passage_create_time"class="label">create</span>
+                    <span id="passage_update_time" class="label success">update</span>
+                    <span id="passage_status" class="label alert">status</span>
+                    <span id="passage_view" class="label warning">view</span>
+                    <blockquote id="passage_summary">那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。</blockquote>
                 </div>
             </article>
         </div>
-        <div class="medium-3 large-3 columns" style="background-color:pink;">菜鸟教程</div>
+        <br/><br/>
+
+        <!-- 侧边栏 -->
+        <div class="medium-3 large-3 columns">
+            <!-- 关于作者 -->
+            <div class="padding_line">
+                <h5 class="subheader">关于作者</h5>
+                <div class="panel">
+                </div>
+            </div>
+
+            <br/><br/>
+
+            <!-- 网站分类 -->
+            <div class="padding_line">
+                <h5 class="subheader">网站分类</h5>
+                <ul class="accordion" data-accordion>
+                  <li class="accordion-navigation">
+                    <a href="#demo">手风琴 1</a>
+                    <div id="demo" class="content">
+                      Demo 1 - 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+                    </div>
+                  </li>
+                  <li class="accordion-navigation">
+                    <a href="#demo2">手风琴 2</a>
+                    <div id="demo2" class="content">
+                      Demo 2 - 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+                    </div>
+                  </li>
+                  <li class="accordion-navigation">
+                    <a href="#demo3">手风琴 3</a>
+                    <div id="demo3" class="content">
+                      Demo 3 - 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
+                    </div>
+                  </li>
+                </ul>
+            </div>
+            <br/><br/>
+
+
+            <!-- 友情链接 -->
+            <div class="th padding_line">
+                <h5 class="subheader">友情链接</h5>
+                <div class="panel">
+                    <ul class="no-bullet">
+                      <li><a href="#">链接1</a></li>
+                      <li><a href="#">链接2</a></li>
+                      <li><a href="#">链接3</a></li>
+                      <li><a href="#">链接4</a></li>
+                    </ul>
+                </div>
+            </div>
+            <br/><br/>
+
+            <!-- 站点信息 -->
+            <div class="th padding_line">
+                <h5 class="subheader">站点信息</h5>
+                  <div class="panel">
+                    <a id="passage_total" class="subheader">文章总数</a><br/>
+                    <a id="category_total" class="subheader">分类总数</a><br/>
+                    <a id="comment_total" class="subheader">评论总数</a><br/>
+                    <a id="visitor_total" class="subheader">访问总数</a><br/>
+                  </div>
+            </div>
+
+        </div>
     </div>
 </div>
 
@@ -80,16 +189,13 @@ require __DIR__ . '/../thinkphp/start.php';
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="assets/js/foundation.min.js"></script>
 <script src="assets/js/vendor/modernizr.js"></script>
-<script type="text/javascript" src="assets/js/snow.js"></script>
+<script src="assets/js/snow.js"></script>
 
 <script>
     $(document).ready(function(){
         $(document).foundation();
         snow()
     });
-</script>
-<script>
-
 </script>
 </body>
 </html>

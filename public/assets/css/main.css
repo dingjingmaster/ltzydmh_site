@@ -1,0 +1,32 @@
+.padding_line {
+    width: 100%;
+}
+
+.padding_div {
+    padding-top: 3px;
+    padding-left: 2px;
+}
+
+.panel {
+    padding-top: 3px;
+    padding-left: 16px;
+    background: unset;
+    border: none;
+    width: 100%;
+}
+
+a:link {
+    color:#868686; text－decoration: none
+}
+
+a:visited {
+    color:#868686; text－decoration:line－through
+}
+
+a:active {
+    color:#6f6f6f; text－decoration:underline
+}
+
+a:hover {
+    color:#007ba4;text－decoration:none;
+}

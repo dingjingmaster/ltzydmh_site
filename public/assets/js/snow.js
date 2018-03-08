@@ -2,11 +2,11 @@ function snow() {
     //1、定义一片雪花模板
     var flake = $("<div>").css({
         "position": "absolute",
-        "color": "#fff"
+        "color": "#87CEFF"
     }).html("❄");
     var documentWidth = $(document).width();
     var documentHieght = $(document).height();
-    var millisec = 500;
+    var millisec = 200;
     setInterval(function() {
         var startLeft = Math.random() * documentWidth;
         var endLeft = Math.random() * documentWidth;
@@ -18,11 +18,11 @@ function snow() {
             "left": startLeft,
             "opacity": startOpacity,
             "font-size": flakeSize,
-            "top": "-25px",
+            "top": "-25px"
         }).animate({
-            "left": endLeft,
+            "left": endLeft - 10,
             "opacity": endOpacity,
-            "top": documentHieght
+            "top": documentHieght - 50
         }, durationTime, function() {
             $(this).remove();
         });
