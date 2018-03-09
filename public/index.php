@@ -11,7 +11,7 @@ require __DIR__ . '/../thinkphp/start.php';
   <meta name="description" content="">
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>聆听朝阳的美好</title>
+  <title>不忘初心，方得始终！</title>
   <!-- CSS 文件 -->
   <link rel="stylesheet" href="assets/css/foundation.css"/>
   <link rel="stylesheet" href="assets/css/main.css"/>
@@ -135,30 +135,28 @@ require __DIR__ . '/../thinkphp/start.php';
 
         <!-- 侧边栏 -->
         <div class="medium-3 large-3 columns">
-            <div class="bottom_div">
-                <!-- 站点信息 -->
-                <div class="th padding_line">
-                    <h5 class="subheader">站点信息</h5>
-                    <div class="panel">
-                        <a id="passage_total" class="subheader">文章总数</a><br/>
-                        <a id="category_total" class="subheader">分类总数</a><br/>
-                        <a id="comment_total" class="subheader">评论总数</a><br/>
-                        <a id="visitor_total" class="subheader">访问总数</a><br/>
-                    </div>
+            <!-- 站点信息 -->
+            <div class="th padding_line">
+                <h5 class="subheader">站点信息</h5>
+                <div class="panel">
+                    <a id="passage_total" class="subheader">文章总数</a><br/>
+                    <a id="category_total" class="subheader">分类总数</a><br/>
+                    <a id="comment_total" class="subheader">评论总数</a><br/>
+                    <a id="visitor_total" class="subheader">访问总数</a><br/>
                 </div>
-                <br/><br/>
+            </div>
+            <br/><br/>
 
-                <!-- 友情链接 -->
-                <div class="th padding_line">
-                    <h5 class="subheader">友情链接</h5>
-                    <div class="panel">
-                        <ul class="no-bullet">
-                          <li><a href="#">链接1</a></li>
-                          <li><a href="#">链接2</a></li>
-                          <li><a href="#">链接3</a></li>
-                          <li><a href="#">链接4</a></li>
-                        </ul>
-                    </div>
+            <!-- 友情链接 -->
+            <div class="th padding_line">
+                <h5 class="subheader">友情链接</h5>
+                <div class="panel">
+                    <ul class="no-bullet">
+                      <li><a href="#">链接1</a></li>
+                      <li><a href="#">链接2</a></li>
+                      <li><a href="#">链接3</a></li>
+                      <li><a href="#">链接4</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -170,16 +168,29 @@ require __DIR__ . '/../thinkphp/start.php';
 <br/>
 
 <!-- 页脚开始 -->
-<div class="row footer" data-equalizer>
-    <div class="medium-6 large-6 columns panel" data-equalizer-watch>
-        <a class="subheader">关于作者</a><br/>
-    </div>
-    <div class="medium-6 large-6 columns panel" data-equalizer-watch>
-        <a class="subheader">关于本站</a><br/>
-    </div>
-</div>
+<footer class="footer">
+    <ul class="small-block-grid-2 medium-block-grid-4 large-block-grid-4">
+        <li>
+            <h5 class="subheader panel">关于本站</h5>
+            <small class="subheader panel">本站旨在总结个人所学,帮助自己梳理知识.欢迎志同道合的朋友交流留言,让我们在技术这条路上共勉！</small>
+        </li>
+        <li>
+            <h5 class="subheader panel">关于作者</h5>
+            <small class="subheader panel">作为一名新手,我的技术还远远不够好,工作中遇到问题只能自己寻求解决办法,这样工作很吃力,也浪费时间.
+            因此,我希望通过此站能帮到像我一样的新手,同时得到一些技术大咖的帮助.</small>
+        </li>
+        <li>
+            <h5 class="subheader panel">公众号</h5>
+            <small class="subheader panel">暂时没有</small>
+        </li>
+        <li>
+            <h5 class="subheader panel">版权声明</h5>
+            <small class="subheader panel">暂时没有</small>
+        </li>
+    </ul>
+</footer>
 <br/><br/>
-
+<!-- 页脚结束 -->
 <!-- javascript -->
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="assets/js/foundation.min.js"></script>

@@ -12,18 +12,9 @@
     border: none;
     width: 100%;
 }
-.bottom_div {
-    position: relative;
-    left: 0;
-    top:500px;
-    bottom: 0;
-}
 .footer {
-    margin: 6px;
-    bottom: 0;
     width: 100%;
-    height: 60px;
-    clear:both;
+    padding: 60px;
 }
 
 a:link {
