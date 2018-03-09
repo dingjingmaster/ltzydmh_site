@@ -115,75 +115,65 @@ require __DIR__ . '/../thinkphp/start.php';
                     <blockquote id="passage_summary">那时候刚好下着雨，柏油路面湿冷冷的，还闪烁着青、黄、红颜色的灯火。我们就在骑楼下躲雨，看绿色的邮筒孤独地站在街的对面。</blockquote>
                 </div>
             </article>
+            <hr/>
+            <div class="pagination-centered">
+                  <ul class="pagination">
+                    <li class="arrow"><a href="#">&laquo;</a></li>
+                    <li class="current"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li class="arrow"><a href="#">&raquo;</a></li>
+                  </ul>
+                </div>
+            <br><br>
         </div>
         <br/><br/>
 
         <!-- 侧边栏 -->
         <div class="medium-3 large-3 columns">
-            <!-- 关于作者 -->
-            <div class="padding_line">
-                <h5 class="subheader">关于作者</h5>
-                <div class="panel">
+            <div class="bottom_div">
+                <!-- 站点信息 -->
+                <div class="th padding_line">
+                    <h5 class="subheader">站点信息</h5>
+                      <div class="panel">
+                        <a id="passage_total" class="subheader">文章总数</a><br/>
+                        <a id="category_total" class="subheader">分类总数</a><br/>
+                        <a id="comment_total" class="subheader">评论总数</a><br/>
+                        <a id="visitor_total" class="subheader">访问总数</a><br/>
+                      </div>
+                </div>
+                <br/><br/>
+
+                <!-- 友情链接 -->
+                <div class="th padding_line">
+                    <h5 class="subheader">友情链接</h5>
+                    <div class="panel">
+                        <ul class="no-bullet">
+                          <li><a href="#">链接1</a></li>
+                          <li><a href="#">链接2</a></li>
+                          <li><a href="#">链接3</a></li>
+                          <li><a href="#">链接4</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-
-            <br/><br/>
-
-            <!-- 网站分类 -->
-            <div class="padding_line">
-                <h5 class="subheader">网站分类</h5>
-                <ul class="accordion" data-accordion>
-                  <li class="accordion-navigation">
-                    <a href="#demo">手风琴 1</a>
-                    <div id="demo" class="content">
-                      Demo 1 - 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
-                    </div>
-                  </li>
-                  <li class="accordion-navigation">
-                    <a href="#demo2">手风琴 2</a>
-                    <div id="demo2" class="content">
-                      Demo 2 - 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
-                    </div>
-                  </li>
-                  <li class="accordion-navigation">
-                    <a href="#demo3">手风琴 3</a>
-                    <div id="demo3" class="content">
-                      Demo 3 - 菜鸟教程 -- 学的不仅是技术，更是梦想！！！
-                    </div>
-                  </li>
-                </ul>
-            </div>
-            <br/><br/>
-
-
-            <!-- 友情链接 -->
-            <div class="th padding_line">
-                <h5 class="subheader">友情链接</h5>
-                <div class="panel">
-                    <ul class="no-bullet">
-                      <li><a href="#">链接1</a></li>
-                      <li><a href="#">链接2</a></li>
-                      <li><a href="#">链接3</a></li>
-                      <li><a href="#">链接4</a></li>
-                    </ul>
-                </div>
-            </div>
-            <br/><br/>
-
-            <!-- 站点信息 -->
-            <div class="th padding_line">
-                <h5 class="subheader">站点信息</h5>
-                  <div class="panel">
-                    <a id="passage_total" class="subheader">文章总数</a><br/>
-                    <a id="category_total" class="subheader">分类总数</a><br/>
-                    <a id="comment_total" class="subheader">评论总数</a><br/>
-                    <a id="visitor_total" class="subheader">访问总数</a><br/>
-                  </div>
-            </div>
-
         </div>
     </div>
 </div>
+<!-- 主要内容结束 -->
+<br/>
+<!-- 页脚开始 -->
+<div class="th row" data-equalizer data-equalizer-mq="large-up">
+    <div class="medium-6 large-6 columns panel" data-equalizer-watch>
+        <a class="subheader">关于作者</a><br/>
+    </div>
+    <div class="medium-6 large-6 columns panel" data-equalizer-watch>
+        <a class="subheader">关于本站</a><br/>
+    </div>
+</div>
+<br/><br/>
 
 <!-- javascript -->
 <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
