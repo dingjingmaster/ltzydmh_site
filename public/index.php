@@ -116,8 +116,9 @@ require __DIR__ . '/../thinkphp/start.php';
                 </div>
             </article>
             <hr/>
+
             <div class="pagination-centered">
-                  <ul class="pagination">
+                <ul class="pagination">
                     <li class="arrow"><a href="#">&laquo;</a></li>
                     <li class="current"><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
@@ -125,11 +126,12 @@ require __DIR__ . '/../thinkphp/start.php';
                     <li><a href="#">4</a></li>
                     <li><a href="#">5</a></li>
                     <li class="arrow"><a href="#">&raquo;</a></li>
-                  </ul>
-                </div>
+                </ul>
+            </div>
             <br><br>
         </div>
         <br/><br/>
+        <!-- 主体内容完结 -->
 
         <!-- 侧边栏 -->
         <div class="medium-3 large-3 columns">
@@ -137,12 +139,12 @@ require __DIR__ . '/../thinkphp/start.php';
                 <!-- 站点信息 -->
                 <div class="th padding_line">
                     <h5 class="subheader">站点信息</h5>
-                      <div class="panel">
+                    <div class="panel">
                         <a id="passage_total" class="subheader">文章总数</a><br/>
                         <a id="category_total" class="subheader">分类总数</a><br/>
                         <a id="comment_total" class="subheader">评论总数</a><br/>
                         <a id="visitor_total" class="subheader">访问总数</a><br/>
-                      </div>
+                    </div>
                 </div>
                 <br/><br/>
 
@@ -160,12 +162,15 @@ require __DIR__ . '/../thinkphp/start.php';
                 </div>
             </div>
         </div>
+        <!-- 侧边栏结束 -->
     </div>
+    <!-- 主要内容 + 侧边栏 结束 -->
 </div>
-<!-- 主要内容结束 -->
+<!-- 正文部分结束 -->
 <br/>
+
 <!-- 页脚开始 -->
-<div class="th row" data-equalizer data-equalizer-mq="large-up">
+<div class="row footer" data-equalizer>
     <div class="medium-6 large-6 columns panel" data-equalizer-watch>
         <a class="subheader">关于作者</a><br/>
     </div>
