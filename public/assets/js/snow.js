@@ -6,12 +6,12 @@ function snow() {
     }).html("❄");
     var documentWidth = $(document).width();
     var documentHieght = $(document).height();
-    var millisec = 200;
+    var millisec = 300;
     setInterval(function() {
         var startLeft = Math.random() * documentWidth;
         var endLeft = Math.random() * documentWidth;
-        var flakeSize = 5 + 20 * Math.random();
-        var durationTime = 4000 + 7000 * Math.random();
+        var flakeSize = 10 + 20 * Math.random();
+        var durationTime = 6000 + 8000 * Math.random();
         var startOpacity = 0.7 + 0.3 * Math.random();
         var endOpacity = 0.2 + 0.2 * Math.random();
         flake.clone().appendTo($("body")).css({

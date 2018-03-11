@@ -11,7 +11,8 @@ require __DIR__ . '/../thinkphp/start.php';
   <meta name="description" content="">
   <meta name="renderer" content="webkit">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>不忘初心，方得始终！</title>
+  <link rel="icon" href="assets/img/dj.icon" type="image/x-icon"/>
+  <title>老丁博客</title>
   <!-- CSS 文件 -->
   <link rel="stylesheet" href="assets/css/foundation.css"/>
   <link rel="stylesheet" href="assets/css/main.css"/>
@@ -21,7 +22,7 @@ require __DIR__ . '/../thinkphp/start.php';
 <!-- 导航栏开始 -->
 <nav class="top-bar" data-topbar>
   <ul class="title-area">
-    <li class="name"><h1><a href="#">WebSiteName</a></h1></li>
+    <li class="name"><img src="assets/img/dj_blog.png"/></li>
     <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
   </ul>
   <section class="top-bar-section">
@@ -196,7 +197,6 @@ require __DIR__ . '/../thinkphp/start.php';
 <script src="assets/js/foundation.min.js"></script>
 <script src="assets/js/vendor/modernizr.js"></script>
 <script src="assets/js/snow.js"></script>
-
 <script>
     $(document).ready(function(){
         $(document).foundation();
