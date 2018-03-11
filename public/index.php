@@ -17,26 +17,52 @@ require __DIR__ . '/../thinkphp/start.php';
   <link rel="stylesheet" href="assets/css/foundation.css"/>
   <link rel="stylesheet" href="assets/css/main.css"/>
 </head>
-
 <body>
 <!-- 导航栏开始 -->
-<nav class="top-bar" data-topbar>
-  <ul class="title-area">
-    <li class="name"><img src="assets/img/dj_blog.png"/></li>
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-  </ul>
-  <section class="top-bar-section">
-    <ul class="left">
-      <li class="active"><a href="#">Home</a></li>
-      <li class="has-dropdown"><a href="#">Dropdown</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
-    </ul>
-  </section>
-</nav>
-<br/>
+<div class="sticky">
+    <nav class="top-bar" data-topbar data-options="sticky_on:large">
+      <ul class="title-area">
+        <li class="name"><a href="http://127.0.0.1/public"><img src="assets/img/dj_blog.png"/></a></li>
+        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
+      </ul>
+      <!-- 导航栏按钮开始 -->
+      <section class="top-bar-section">
+        <ul class="left">
+            <li><a href="#">首页</a></li>
+            <li class="has-dropdown">
+                <a href="#">理论基础</a>
+                <ul class="dropdown">
+                  <li><a href="#">Page 1</a></li>
+                  <li><a href="#">Page 2</a></li>
+                  <li><a href="#">Page 3</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">实战记录</a>
+                <ul class="dropdown">
+                  <li><a href="#">Page 1</a></li>
+                  <li><a href="#">Page 2</a></li>
+                  <li><a href="#">Page 3</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown">
+                <a href="#">常见问题解决</a>
+                <ul class="dropdown">
+                  <li><a href="#">Page 1</a></li>
+                  <li><a href="#">Page 2</a></li>
+                  <li><a href="#">Page 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#">文章归档</a></li>
+            <li><a href="#">关于作者</a></li>
+         </ul>
+
+      </section>
+      <!-- 导航栏按钮结束 -->
+    </nav>
+</div>
 <!-- 导航栏结束 -->
+<br/>
 
 <!-- banner start -->
 
@@ -136,6 +162,16 @@ require __DIR__ . '/../thinkphp/start.php';
 
         <!-- 侧边栏 -->
         <div class="medium-3 large-3 columns">
+            <!-- 搜索框 -->
+            <div class="row">
+                <div class="small-8 medium-8 large-8 columns" style="padding-right: 0px;">
+                    <input type="text" placeholder="搜索"/>
+                </div>
+                <div class="small-4 medium-4 large-4 columns" style="padding: 0px;">
+                    <button type="button" class="button tiny" style=" margin-left: 12px;">搜索</button>
+                </div>
+            </div>
+
             <!-- 站点信息 -->
             <div class="th padding_line">
                 <h5 class="subheader">站点信息</h5>
