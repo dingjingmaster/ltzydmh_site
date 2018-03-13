@@ -4,22 +4,22 @@ USE ltzydmh;
 
 -- 访问情况
 CREATE TABLE IF NOT EXISTS `ltzydmh_summary` (
-    `djid` VARCHAR(128) NOT NULL,               -- 主键
-    `page_num` INT NOT NULL,                    -- 文章数量
+    `passage_num` INT NOT NULL,                 -- 文章数量
     `category_num` INT NOT NULL,                -- 分类数量
     `comment_num` INT NOT NULL,                 -- 评论数量
-    `visitor_num` INT NOT NULL,                 -- 访问数量
-    PRIMARY KEY (`djid`)
+    `visitor_num` INT NOT NULL                  -- 访问数量
 );
+
+INSERT INTO `ltzydmh_summary`(passage_num, category_num, comment_num, visitor_num)VALUES(0, 0, 0, 0);
 
 -- 文章信息
 CREATE TABLE IF NOT EXISTS `ltzydmh_passage_info` (
     `djid` VARCHAR(128) NOT NULL,               -- 主键
     `name` TEXT NOT NULL,                       -- 标题
     `summary` TEXT NOT NULL,                    -- 摘要
-    `create` DATE NOT NULL,                     -- 创建时间
-    `update` DATE NOT NULL,                     -- 更新时间
-    `status` INT NOT NULL,                      -- 状态: 1-原创 2-转载 3-翻译
+    `create_time` VARCHAR(128) NOT NULL,        -- 创建时间
+    `update_time` VARCHAR(128) NOT NULL,        -- 更新时间
+    `status` VARCHAR(128) NOT NULL,             -- 状态: 原创 转载 翻译
     `category` TEXT NOT NULL,                   -- 分类
     `view` BIGINT DEFAULT 0 NOT NULL,           -- 阅读量
     PRIMARY KEY (`djid`)
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `ltzydmh_passage_content` (
 -- 评论表格
 CREATE TABLE IF NOT EXISTS `ltzydmh_passage_comment` (
     `id` VARCHAR(128) NOT NULL,                 -- 主键
-    `page_id` VARCHAR(128) NOT NULL,            -- 文章djid
+    `passage_id` VARCHAR(128) NOT NULL,         -- 文章djid
     `question` TEXT NOT NULL,                   -- 评论
     `answer` TEXT,                              -- 回答
     PRIMARY KEY (`id`)
