@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"G:\OneDrive\www\ltzydmh_site/application/index\view\index\index.html";i:1521013299;}*/ ?>
 <!DOCTYPE html>
 <html xml:lang="zh-Hans" lang="zh-Hans">
 <head>
@@ -66,7 +67,7 @@
     <div class="row">
         <!-- 主体内容 -->
         <div class="medium-9 large-9 columns">
-            {$content}
+            <?php echo $content; ?>
 
             <article>
                 <div class="th">
@@ -179,10 +180,10 @@
             <div class="th padding_line">
                 <h5 class="subheader">站点信息</h5>
                 <div class="panel">
-                    <a id="passage_total" class="subheader">文章总数: {$passage}</a><br/>
-                    <a id="category_total" class="subheader">分类总数: {$category}</a><br/>
-                    <a id="comment_total" class="subheader">评论总数: {$comment}</a><br/>
-                    <a id="visitor_total" class="subheader">访问总数: {$visitor}</a><br/>
+                    <a id="passage_total" class="subheader">文章总数: <?php echo $passage; ?></a><br/>
+                    <a id="category_total" class="subheader">分类总数: <?php echo $category; ?></a><br/>
+                    <a id="comment_total" class="subheader">评论总数: <?php echo $comment; ?></a><br/>
+                    <a id="visitor_total" class="subheader">访问总数: <?php echo $visitor; ?></a><br/>
                 </div>
             </div>
             <br/><br/>

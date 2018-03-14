@@ -4,13 +4,15 @@ USE ltzydmh;
 
 -- 访问情况
 CREATE TABLE IF NOT EXISTS `ltzydmh_summary` (
+	`id` VARCHAR(128)	NOT NULL,
     `passage_num` INT NOT NULL,                 -- 文章数量
     `category_num` INT NOT NULL,                -- 分类数量
     `comment_num` INT NOT NULL,                 -- 评论数量
-    `visitor_num` INT NOT NULL                  -- 访问数量
+    `visitor_num` INT NOT NULL,                 -- 访问数量
+	PRIMARY KEY (`id`)
 );
 
-INSERT INTO `ltzydmh_summary`(passage_num, category_num, comment_num, visitor_num)VALUES(0, 0, 0, 0);
+INSERT INTO `ltzydmh_summary`(id, passage_num, category_num, comment_num, visitor_num)VALUES('id', 0, 0, 0, 0);
 
 -- 文章信息
 CREATE TABLE IF NOT EXISTS `ltzydmh_passage_info` (
