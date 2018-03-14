@@ -16,8 +16,8 @@ function index_passage_html($result) {
         $djid = $i['djid'];
         $name = $i['name'];
         $summary = $i['summary'];
-        $create_time = trans_date($i['create_time']);
-        $update_time = trans_date($i['update_time']);
+        $create_time = '创建:' . trans_date($i['create_time']);
+        $update_time = '更新:' . trans_date($i['update_time']);
         $status = $i['status'];
         $category = $i['category'];
         $view = $i['view'];
