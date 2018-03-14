@@ -10,6 +10,9 @@
 // +----------------------------------------------------------------------
 
 return [
+    '/'                                 =>      'index/index',
+    'passage/:pid'                      =>      'passage/read',
+    /*
     '__pattern__' => [
         'name' => '\w+',
     ],
@@ -17,5 +20,6 @@ return [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],
     ],
+    */
 
 ];

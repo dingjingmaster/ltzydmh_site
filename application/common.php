@@ -25,7 +25,7 @@ function index_passage_html($result) {
         $outBuf = $outBuf .
             '<article>'.
                 '<div class="th padding_line">'.
-                    '<h3><a id="passage_title" href="">' . $name . '</a></h3>'.
+                    '<h3><a id="passage_title" href="' . '/index.php/passage/' . $djid . '">' . $name . '</a></h3>'.
                     '<span id="passage_category" class="space label info">' . $category . '</span>'.
                     '<span id="passage_status" class="space label alert">' . $status . '</span>'.
                     '<span id="passage_view" class="space label warning">' . $view . '</span>'.
