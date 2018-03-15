@@ -95,7 +95,12 @@ def execute_sql(cursor, sql):
     return;
 
 
-def ltzydmh_summary(cursor):
+def ltzydmh_update_category(cursor):
+    sql = "UPDATE ltzydmh_summary SET category_num=category_num + 1"
+    execute_sql(cursor, sql);
+
+
+def ltzydmh_update_passage(cursor):
     sql = "UPDATE ltzydmh_summary SET passage_num=passage_num + 1"
     execute_sql(cursor, sql);
 
@@ -135,6 +140,7 @@ def ltzydmh_passage_category(cursor, category):
     try:
         execute_sql(cursor, sql);
         db.commit()
+        ltzydmh_update_passage(cursor)
     except:
         db.rollback()
         sql = "UPDATE ltzydmh_passage_category SET num=num + 1 WHERE category=" + category
@@ -142,9 +148,9 @@ def ltzydmh_passage_category(cursor, category):
 
 
 def upload_passage(cursor, title, summary, status, category, keyword, content):
-    ltzydmh_summary(cursor)
     ltzydmh_passage_info(cursor, title, summary, status, category)
     ltzydmh_passage_content(cursor, title, category, keyword, content)
+    ltzydmh_update_passage(cursor)
     ltzydmh_passage_category(cursor, category)
 
 
