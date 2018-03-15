@@ -49,6 +49,7 @@ def parse_file(file_path):
     pas_status = ""
     pas_category = ""
     pas_content = ""
+    pas_keyword = ""
     is_blog_file = False
     try:
         fw = open(file_path, 'r', encoding='UTF-8')
@@ -68,6 +69,9 @@ def parse_file(file_path):
             elif -1 != line.find('[category]'):
                 pas_category = lines[i + 1].strip()
                 continue
+            elif -1 != line.find('[keyword]'):
+                pas_keyword = lines[i + 1].strip()
+                continue
             elif -1 != line.find('[content]'):
                 content_list = lines[i + 1:]
                 is_blog_file = True
@@ -79,7 +83,7 @@ def parse_file(file_path):
         print ("无法打开的文件" + file_path)
     else:
         fw.close()
-    return (pas_title, pas_summary, pas_status, pas_category, pas_content)
+    return (pas_title, pas_summary, pas_status, pas_category, pas_keyword, pas_content)
 
 def execute_sql(cursor, sql):
     try:
@@ -112,20 +116,20 @@ def ltzydmh_passage_info(cursor, title, summary, status, category):
         VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')" % (djid, title, summary, create, update, status, category, 0)
     execute_sql(cursor, sql);
 
-def ltzydmh_passage_content(cursor, title, category, content):
+def ltzydmh_passage_content(cursor, title, category, keyword, content):
     djid = "" + category + title
     md5 = hashlib.md5()
     md5.update(djid.encode('utf8'))
     djid = md5.hexdigest()
     sql = "INSERT INTO ltzydmh_passage_content \
-        (djid, content) \
-        VALUES('%s', '%s')" % (djid, content)
+        (djid, keyword, content) \
+        VALUES('%s', '%s', '%s')" % (djid, keyword, content)
     execute_sql(cursor, sql);
 
-def upload_passage(cursor, title, summary, status, category, content):
+def upload_passage(cursor, title, summary, status, category, keyword, content):
     ltzydmh_summary(cursor)
     ltzydmh_passage_info(cursor, title, summary, status, category)
-    ltzydmh_passage_content(cursor, title, category, content)
+    ltzydmh_passage_content(cursor, title, category, keyword, content)
 
 
 
@@ -147,8 +151,8 @@ if __name__ == '__main__':
     load_uploaded_file(uploaded_file, upload_path, uploaded)
     dir_files(base_path, file_list, uploaded)
     for files, file_path in file_list:
-        pas_title, pas_summary, pas_status, pas_category, pas_content = parse_file(file_path)
-        upload_passage(cur, pas_title, pas_summary, pas_status, pas_category, pas_content)
+        pas_title, pas_summary, pas_status, pas_category, pas_wordkey, pas_content = parse_file(file_path)
+        upload_passage(cur, pas_title, pas_summary, pas_status, pas_category, pas_wordkey, pas_content)
         uploaded[files] = 0
     save_uploaded_file(upload_path, uploaded)
 

@@ -20,8 +20,9 @@ class Passage extends Controller {
         $res = $passageContent::get($req->param('pid'));
         $html = $parser->makeHtml($res['content']);
         $this->assign([
-            'content' => $html,
-            'host'      =>  '' . url_type() . server_ip(),
+            'content'   =>      $html,
+            'keyword'   =>      $res['keyword'],
+            'host'      =>      '' . url_type() . server_ip(),
             ]);
 
         return $this->fetch();

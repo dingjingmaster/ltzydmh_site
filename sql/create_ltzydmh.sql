@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `ltzydmh_passage_link` (
 -- 文章内容
 CREATE TABLE IF NOT EXISTS `ltzydmh_passage_content` (
     `djid` VARCHAR(128) NOT NULL,               -- 主键
+	`keyword` VARCHAR(128) NOT NULL,			-- 关键字
     `content` TEXT NOT NULL,                    -- 内容
     PRIMARY KEY (`djid`)
 );

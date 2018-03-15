@@ -1,10 +1,10 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"G:\OneDrive\www\ltzydmh_site/application/index\view\passage\read.html";i:1521109142;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"G:\OneDrive\www\ltzydmh_site/application/index\view\passage\read.html";i:1521121373;}*/ ?>
 <!DOCTYPE html>
 <html xml:lang="zh-Hans" lang="zh-Hans">
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
+    <meta name="keywords" content="<?php echo $keyword; ?>">
+    <meta name="description" content="<?php echo $keyword; ?>">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?php echo $host; ?>/public/assets/img/dj.icon" type="image/x-icon"/>
