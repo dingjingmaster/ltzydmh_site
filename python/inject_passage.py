@@ -116,6 +116,7 @@ def ltzydmh_passage_info(cursor, title, summary, status, category):
         VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')" % (djid, title, summary, create, update, status, category, 0)
     execute_sql(cursor, sql);
 
+
 def ltzydmh_passage_content(cursor, title, category, keyword, content):
     djid = "" + category + title
     md5 = hashlib.md5()
@@ -126,10 +127,25 @@ def ltzydmh_passage_content(cursor, title, category, keyword, content):
         VALUES('%s', '%s', '%s')" % (djid, keyword, content)
     execute_sql(cursor, sql);
 
+
+def ltzydmh_passage_category(cursor, category):
+    sql = "INSERT INTO ltzydmh_passage_category \
+        (category, num) \
+        VALUES('%s', '%d')" % (category, 0)
+    try:
+        execute_sql(cursor, sql);
+        db.commit()
+    except:
+        db.rollback()
+        sql = "UPDATE ltzydmh_passage_category SET num=num + 1 WHERE category=" + category
+        execute_sql(cursor, sql);
+
+
 def upload_passage(cursor, title, summary, status, category, keyword, content):
     ltzydmh_summary(cursor)
     ltzydmh_passage_info(cursor, title, summary, status, category)
     ltzydmh_passage_content(cursor, title, category, keyword, content)
+    ltzydmh_passage_category(cursor, category)
 
 
 

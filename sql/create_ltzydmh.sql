@@ -2,6 +2,8 @@
 ALTER DATABASE ltzydmh CHARACTER SET utf8;
 USE ltzydmh;
 
+
+
 -- 访问情况
 CREATE TABLE IF NOT EXISTS `ltzydmh_summary` (
 	`id` VARCHAR(128)	NOT NULL,
@@ -13,6 +15,13 @@ CREATE TABLE IF NOT EXISTS `ltzydmh_summary` (
 );
 
 INSERT INTO `ltzydmh_summary`(id, passage_num, category_num, comment_num, visitor_num)VALUES('id', 0, 0, 0, 0);
+
+-- 文章分类
+CREATE TABLE IF NOT EXISTS `ltzydmh_passage_category` (
+	`category`	VARCHAR(128) NOT NULL,			-- 文章分类
+	`num` INT NOT NULL,							-- 此分类文章数
+	PRIMARY KEY (`category`)
+);
 
 -- 文章信息
 CREATE TABLE IF NOT EXISTS `ltzydmh_passage_info` (
