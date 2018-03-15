@@ -12,7 +12,7 @@ class Index extends Controller {
         $this->assign($summary->get_value());
         $this->assign($passageInfo->get_ten_passage(0));
         $this->assign([
-            'host'      =>  '' . url_type() . $_SERVER['REMOTE_ADDR'],
+            'host'      =>  '' . url_type() . server_ip(),
         ]);
 
         return $this->fetch('index');

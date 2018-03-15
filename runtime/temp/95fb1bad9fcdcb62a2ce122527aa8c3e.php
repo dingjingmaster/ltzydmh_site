@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"G:\OneDrive\www\ltzydmh_site/application/index\view\passage\read.html";i:1521107389;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"G:\OneDrive\www\ltzydmh_site/application/index\view\passage\read.html";i:1521109142;}*/ ?>
 <!DOCTYPE html>
 <html xml:lang="zh-Hans" lang="zh-Hans">
 <head>
@@ -18,13 +18,13 @@
 <div class="sticky">
     <nav class="top-bar" data-topbar data-options="sticky_on:large">
         <ul class="title-area">
-            <li class="name"><a href="http://127.0.0.1/public"><img src="<?php echo $host; ?>/public/assets/img/dj_blog.png"/></a></li>
+            <li class="name"><a href="<?php echo $host; ?>"><img src="<?php echo $host; ?>/public/assets/img/dj_blog.png"/></a></li>
             <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
         </ul>
         <!-- 导航栏按钮开始 -->
         <section class="top-bar-section">
             <ul class="left">
-                <li><a href="#">首页</a></li>
+                <li><a href="<?php echo $host; ?>">首页</a></li>
                 <li class="has-dropdown">
                     <a href="#">理论基础</a>
                     <ul class="dropdown">

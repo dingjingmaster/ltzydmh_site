@@ -1,5 +1,12 @@
 <?php
 
+function server_ip() {
+    $host = isset($_SERVER['HTTP_X_FORWARDED_HOST']) ?
+        $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
+
+    return $host;
+}
+
 function url_type () {
     $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on')
     || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';

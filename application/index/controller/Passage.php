@@ -21,7 +21,7 @@ class Passage extends Controller {
         $html = $parser->makeHtml($res['content']);
         $this->assign([
             'content' => $html,
-            'host'      =>  '' . url_type() . $_SERVER['REMOTE_ADDR'],
+            'host'      =>  '' . url_type() . server_ip(),
             ]);
 
         return $this->fetch();
