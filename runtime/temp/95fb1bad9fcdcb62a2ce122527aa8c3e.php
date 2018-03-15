@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:68:"G:\OneDrive\www\ltzydmh_site/application/index\view\index\index.html";i:1521106747;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:69:"G:\OneDrive\www\ltzydmh_site/application/index\view\passage\read.html";i:1521107389;}*/ ?>
 <!DOCTYPE html>
 <html xml:lang="zh-Hans" lang="zh-Hans">
 <head>
@@ -65,70 +65,19 @@
 <div>
     <hr/>
     <div class="row">
+        <!-- 侧边栏 -->
+        <div class="medium-3 large-3 columns"></div>
+        <!-- 侧边栏结束 -->
+        <br/><br/>
+
         <!-- 主体内容 -->
         <div class="medium-9 large-9 columns">
             <?php echo $content; ?>
-            
-            <!-- 分页功能 -->
-            <div class="pagination-centered">
-                <ul class="pagination">
 
-                    <!--
-                    <li class="arrow"><a href="#">&laquo;</a></li>
-                    <li class="current"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li class="arrow"><a href="#">&raquo;</a></li>
-                    -->
-                </ul>
-            </div>
             <br><br>
         </div>
-        <br/><br/>
         <!-- 主体内容完结 -->
-
-        <!-- 侧边栏 -->
-        <div class="medium-3 large-3 columns">
-            <!-- 搜索框 -->
-            <div class="row">
-                <div class="small-8 medium-8 large-8 columns" style="padding-right: 0;">
-                    <input type="text" class="th" placeholder="搜索"/>
-                </div>
-                <div class="small-4 medium-4 large-4 columns" style="padding: 0;">
-                    <button type="button" class="button tiny" style=" margin-left: 12px;">搜索</button>
-                </div>
-            </div>
-
-            <!-- 站点信息 -->
-            <div class="th padding_line">
-                <h5 class="subheader">站点信息</h5>
-                <div class="panel">
-                    <a id="passage_total" class="subheader">文章总数: <?php echo $passage; ?></a><br/>
-                    <a id="category_total" class="subheader">分类总数: <?php echo $category; ?></a><br/>
-                    <a id="comment_total" class="subheader">评论总数: <?php echo $comment; ?></a><br/>
-                    <a id="visitor_total" class="subheader">访问总数: <?php echo $visitor; ?></a><br/>
-                </div>
-            </div>
-            <br/><br/>
-
-            <!-- 友情链接 -->
-            <div class="th padding_line">
-                <h5 class="subheader">友情链接</h5>
-                <div class="panel">
-                    <ul class="no-bullet">
-                        <li><a href="#">链接1</a></li>
-                        <li><a href="#">链接2</a></li>
-                        <li><a href="#">链接3</a></li>
-                        <li><a href="#">链接4</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- 侧边栏结束 -->
     </div>
-    <!-- 主要内容 + 侧边栏 结束 -->
 </div>
 <!-- 正文部分结束 -->
 <br/>

@@ -10,15 +10,20 @@ namespace app\index\controller;
 use app\index\model\PassageContent;
 use \think\Controller;
 use think\Request;
+use app\common\markdown\Parser;
 
 class Passage extends Controller {
     public function read(Request $req) {
-
+        $parser = new Parser;
         $passageContent = new PassageContent();
 
         $res = $passageContent::get($req->param('pid'));
-        echo $res['content'];
+        $html = $parser->makeHtml($res['content']);
+        $this->assign([
+            'content' => $html,
+            'host'      =>  '' . url_type() . $_SERVER['REMOTE_ADDR'],
+            ]);
 
-        $this->display("");
+        return $this->fetch();
     }
 }
