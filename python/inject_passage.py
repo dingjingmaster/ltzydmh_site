@@ -131,7 +131,7 @@ def ltzydmh_passage_content(cursor, title, category, keyword, content):
 def ltzydmh_passage_category(cursor, category):
     sql = "INSERT INTO ltzydmh_passage_category \
         (category, num) \
-        VALUES('%s', '%d')" % (category, 0)
+        VALUES('%s', '%d')" % (category, 1)
     try:
         execute_sql(cursor, sql);
         db.commit()
