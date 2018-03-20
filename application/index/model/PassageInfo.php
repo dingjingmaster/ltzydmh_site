@@ -22,6 +22,16 @@ class PassageInfo extends Model {
         'debug'        =>      true,
     ];
 
+    public function update_view($pid) {
+        $sql = 'UPDATE ltzydmh_passage_info SET viewcount=viewcount+1 WHERE djid="' . $pid . '"';
+        //echo $sql;
+        try {
+            $this::execute($sql);
+        } catch(Exception $e) {
+            $e->getMessage();
+        }
+    }
+
     public function get_ten_passage($start) {
         $res = '';
         try {

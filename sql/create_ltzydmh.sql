@@ -3,18 +3,25 @@ ALTER DATABASE ltzydmh CHARACTER SET utf8;
 USE ltzydmh;
 
 
-
--- 访问情况
+-- 总体情况
 CREATE TABLE IF NOT EXISTS `ltzydmh_summary` (
 	`id` VARCHAR(128)	NOT NULL,
     `passage_num` INT NOT NULL,                 -- 文章数量
     `category_num` INT NOT NULL,                -- 分类数量
     `comment_num` INT NOT NULL,                 -- 评论数量
-    `visitor_num` INT NOT NULL,                 -- 访问数量
 	PRIMARY KEY (`id`)
 );
 
-INSERT INTO `ltzydmh_summary`(id, passage_num, category_num, comment_num, visitor_num)VALUES('id', 0, 0, 0, 0);
+INSERT INTO `ltzydmh_summary`(id, passage_num, category_num, comment_num)VALUES('id', 0, 0, 0);
+
+
+-- 网站访问情况
+CREATE TABLE IF NOT EXISTS `ltzydmh_click` (
+	`idtime` VARCHAR(128)	NOT NULL,
+	`num`	INT NOT NULL,						-- 每天记录的访问量
+	PRIMARY KEY (`idtime`)
+);
+
 
 -- 文章分类
 CREATE TABLE IF NOT EXISTS `ltzydmh_passage_category` (
@@ -32,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `ltzydmh_passage_info` (
     `update_time` VARCHAR(128) NOT NULL,        -- 更新时间
     `status` VARCHAR(128) NOT NULL,             -- 状态: 原创 转载 翻译
     `category` TEXT NOT NULL,                   -- 分类
-    `view` BIGINT DEFAULT 0 NOT NULL,           -- 阅读量
+    `viewcount` BIGINT DEFAULT 0 NOT NULL,      -- 阅读量
     PRIMARY KEY (`djid`)
 );
 

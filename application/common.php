@@ -1,5 +1,22 @@
 <?php
 
+use app\index\model\Click;
+
+function update_click_num() {
+    $clk = new Click();
+    $key = date('Ymd',time());
+    $sql1 = 'INSERT INTO ltzydmh_click (idtime, num) VALUES (' . $key . ',1) ';
+    $sql2 = 'UPDATE ltzydmh_click SET num=num+1 WHERE idtime=' . $key;
+    try {
+        $clk->execute($sql1);
+    } catch(Exception $e) {
+        try {
+            $clk->execute($sql2);
+        }catch (Exception $e) {
+        }
+    }
+}
+
 function server_ip() {
     $host = isset($_SERVER['HTTP_X_FORWARDED_HOST']) ?
         $_SERVER['HTTP_X_FORWARDED_HOST'] : (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
@@ -30,11 +47,11 @@ function index_passage_html($result) {
         $djid = $i['djid'];
         $name = $i['name'];
         $summary = $i['summary'];
-        $create_time = '创建:' . trans_date($i['create_time']);
-        $update_time = '更新:' . trans_date($i['update_time']);
+        $create_time = '创建 :' . trans_date($i['create_time']);
+        $update_time = '更新 :' . trans_date($i['update_time']);
         $status = $i['status'];
         $category = $i['category'];
-        $view = $i['view'];
+        $view = '阅读: ' . $i['viewcount'];
 
         $outBuf = $outBuf .
             '<article>'.

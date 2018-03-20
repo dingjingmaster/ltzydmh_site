@@ -1,89 +1,119 @@
 #!/bin/env python
 #-*- coding=utf-8 -*-
 import os
-import os.path
-import pymysql
+import sys
 import time
+import pymysql
 import hashlib
 
-def dir_files(dir_path, file_list, uploaded):
-    files = os.listdir(dir_path)
+# 将时间戳转为时间字符串
+def time_to_str(timeStamp):
+    return time.strftime("%Y%m%d%H%M%S", time.localtime(timeStamp))
+
+# 获取文件的创建时间和最后更新时间
+def file_create_update(fileName):
+    fileInfo = os.stat(fileName)
+    createTime = time_to_str(fileInfo.st_ctime)
+    updateTime = time_to_str(fileInfo.st_mtime)
+    return (str(createTime), str(updateTime))
+
+# 获取指定文件夹下的文件名及文件路径
+def dir_files(dirPath, fileList, loaded):
+    files = os.listdir(dirPath)
+    flag = ""
     try:
         for f in files:
-            fpath = os.path.join(dir_path, f)
-            if (True != os.path.isdir(fpath)) and (not(f in uploaded)):
-                file_list.append((f, fpath))
+            fpath = os.path.join(dirPath, f)
+            if os.path.isfile(fpath):
+                realCreateTime = ""
+                realUpdateTime = ""
+                historyCreateTime = ""
+                historyUpdateTime = ""
+                realCreateTime, realUpdateTime = file_create_update(fpath)
+                if f in loaded:
+                    historyCreateTime, historyUpdateTime = loaded[f]        # 历史更新时间和历史创建时间
+                    flag = "update"
+                else:
+                    flag = "insert"
+                    historyCreateTime, historyUpdateTime = (0, 0)
+                if (int(realUpdateTime) > int(historyUpdateTime))\
+                        and (f.endswith(".md")):
+                    fileList.append((f, fpath, realCreateTime, realUpdateTime, flag))
     except:
-        print ("dir_files 异常")
+        print ("dirFiles 异常")
+    return
 
-
-def load_uploaded_file(file, file_path, loaded):
-    loaded[file] = 0
-    global fr
+# 获取历史文件上传记录
+def load_uploaded_file(file, filePath, loaded):
+    fr = None
     try:
-        fr = open(file_path, 'r')
+        fr = open(filePath, 'rb')
         for i in fr.readlines():
+            i = i.decode("utf8")
             i = i.strip()
-            loaded[i] = 0
+            arr = i.split("\t")
+            loaded[arr[0]] = (arr[1], arr[2])
     except:
         print ("获取历史上传文件记录失败")
     else:
         fr.close()
 
-
+# 保存历史文件上传记录
 def save_uploaded_file(file, loaded):
-    file_buf = ""
+    fileBuf = ""
     for i in loaded.keys():
-        file_buf += i + "\n"
+        createTime, updateTime = loaded[i]
+        fileBuf += str(i) + "\t" + str(createTime) + "\t" + str(updateTime) + "\n"
     try:
-        fr = open(file, 'w')
-        fr.write(file_buf.strip())
+        fr = open(file, 'wb')
+        fileBuf = fileBuf.strip().encode("utf-8")
+        fr.write(fileBuf)
     except:
         print ("获取历史上传文件记录失败")
     else:
         fr.close()
 
-def parse_file(file_path):
-    pas_title = ""
-    pas_summary = ""
-    pas_status = ""
-    pas_category = ""
-    pas_content = ""
-    pas_keyword = ""
-    is_blog_file = False
+def parse_file(filePath):
+    pasTitle = ""
+    pasSummary = ""
+    pasStatus = ""
+    pasCategory = ""
+    pasContent = ""
+    pasKeyword = ""
+    isBlogFile = False
     try:
-        fw = open(file_path, 'r', encoding='UTF-8')
+        fw = open(filePath, 'r', encoding='UTF-8')
         lines = fw.readlines()
-        content_list = []
+        contentList = []
         for i in range(len(lines)):
             line = lines[i].strip()
             if -1 != line.find('[title]'):
-                pas_title = lines[i + 1].strip()
+                pasTitle = lines[i + 1].strip()
                 continue
             elif -1 != line.find('[summary]'):
-                pas_summary = lines[i + 1].strip()
+                pasSummary = lines[i + 1].strip()
                 continue
             elif -1 != line.find('[status]'):
-                pas_status = lines[i + 1].strip()
+                pasStatus = lines[i + 1].strip()
                 continue
             elif -1 != line.find('[category]'):
-                pas_category = lines[i + 1].strip()
+                pasCategory = lines[i + 1].strip()
                 continue
             elif -1 != line.find('[keyword]'):
-                pas_keyword = lines[i + 1].strip()
+                pasKeyword = lines[i + 1].strip()
                 continue
             elif -1 != line.find('[content]'):
-                content_list = lines[i + 1:]
-                is_blog_file = True
+                contentList = lines[i + 1:]
+                isBlogFile = True
                 break
-        if is_blog_file:
-            for i in content_list:
-                pas_content += i
+        if isBlogFile:
+            for i in contentList:
+                pasContent += i
     except:
         print ("无法打开的文件" + file_path)
     else:
         fw.close()
-    return (pas_title, pas_summary, pas_status, pas_category, pas_keyword, pas_content)
+    return (pasTitle, pasSummary, pasStatus, pasCategory, pasKeyword, pasContent)
 
 def execute_sql(cursor, sql):
     try:
@@ -117,7 +147,7 @@ def ltzydmh_passage_info(cursor, title, summary, status, category):
     md5.update(djid.encode('utf8'))
     djid = md5.hexdigest()
     sql = "INSERT INTO ltzydmh_passage_info \
-        (djid, name, summary, create_time, update_time, status, category, view) \
+        (djid, name, summary, create_time, update_time, status, category, viewcount) \
         VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')" % (djid, title, summary, create, update, status, category, 0)
     execute_sql(cursor, sql);
 
@@ -139,12 +169,11 @@ def ltzydmh_passage_category(cursor, category):
         VALUES('%s', '%d')" % (category, 1)
     try:
         execute_sql(cursor, sql);
-        db.commit()
-        ltzydmh_update_passage(cursor)
+        ltzydmh_update_category(cursor)
     except:
-        db.rollback()
-        sql = "UPDATE ltzydmh_passage_category SET num=num + 1 WHERE category=" + category
+        sql = "UPDATE ltzydmh_passage_category SET num=num+1 WHERE category=" + category
         execute_sql(cursor, sql);
+
 
 
 def upload_passage(cursor, title, summary, status, category, keyword, content):
@@ -156,28 +185,29 @@ def upload_passage(cursor, title, summary, status, category, keyword, content):
 
 
 if __name__ == '__main__':
-    db = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='root', db='ltzydmh', charset='utf8')
+    basePath = "G:/OneDrive/www/博客文章/"
+    if len(sys.argv) == 2:
+        basePath = sys.argv[1]
+    uploadedFile = "uploaded.txt"
+    uploadPath = basePath + uploadedFile                        # 暂存历史上传文件路径
+    uploaded = {}                                               # 已经上传的
+    fileList = []                                               # 将要上传或者更新的
+
+    db = pymysql.connect(host='127.0.0.1', port=3306\
+            , user='root', passwd='root', db='ltzydmh'\
+            , charset='utf8')
     cur = db.cursor()
-    global base_path
-    global uploaded_file
-    global upload_path
-    global uploaded
-    global file_list
-
-    base_path = "G:/OneDrive/www/博客文章/"
-    uploaded_file = "uploaded.txt"
-    upload_path = base_path + uploaded_file
-    uploaded = {}
-    file_list = []
-
-    load_uploaded_file(uploaded_file, upload_path, uploaded)
-    dir_files(base_path, file_list, uploaded)
-    for files, file_path in file_list:
-        pas_title, pas_summary, pas_status, pas_category, pas_wordkey, pas_content = parse_file(file_path)
-        upload_passage(cur, pas_title, pas_summary, pas_status, pas_category, pas_wordkey, pas_content)
-        uploaded[files] = 0
-    save_uploaded_file(upload_path, uploaded)
+    load_uploaded_file(uploadedFile, uploadPath, uploaded)
+    dir_files(basePath, fileList, uploaded)
+    for files, filePath, createTime, updateTime, flag in fileList:
+        pasTitle, pasSummary, pasStatus, pasCategory, pasWordkey, pasContent = parse_file(filePath)
+        '''
+        upload_passage(cur, pasTitle, pasSummary, pasStatus, pasCategory, pasWordkey, pasContent)
+        '''
+        uploaded[files] = (createTime, updateTime)
+    save_uploaded_file(uploadPath, uploaded)
 
     cur.close()
     db.close()
+
     exit (0)

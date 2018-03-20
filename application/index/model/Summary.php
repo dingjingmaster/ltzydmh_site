@@ -26,13 +26,11 @@
          $passage_num = $res['passage_num'];
          $category_num = $res['category_num'];
          $comment_num = $res['comment_num'];
-         $visitor_num = $res['visitor_num'];
 
          $res = [
              'passage'  =>      $passage_num,
              'category' =>      $category_num,
              'comment'  =>      $comment_num,
-             'visitor'  =>      $visitor_num,
          ];
          return $res;
      }

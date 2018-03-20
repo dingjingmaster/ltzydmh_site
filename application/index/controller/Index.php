@@ -6,6 +6,7 @@ use app\index\model\Summary;
 
 class Index extends Controller {
     public function index() {
+        update_click_num();
         $summary = new Summary();
         $passageInfo = new PassageInfo();
 

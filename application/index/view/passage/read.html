@@ -11,6 +11,7 @@
     <!-- CSS 文件 -->
     <link rel="stylesheet" href="{$host}/public/assets/css/foundation.css"/>
     <link rel="stylesheet" href="{$host}/public/assets/css/main.css"/>
+    <link rel="stylesheet" href="{$host}/public/assets/css/styles/foundation.css"/>
 </head>
 <body>
 <!-- 导航栏开始 -->
@@ -110,10 +111,12 @@
 <script src="{$host}/public/assets/js/foundation.min.js"></script>
 <script src="{$host}/public/assets/js/vendor/modernizr.js"></script>
 <script src="{$host}/public/assets/js/snow.js"></script>
+<script src="{$host}/public/assets/js/highlight.pack.js"></script>
 <script>
     $(document).ready(function(){
         $(document).foundation();
-        snow()
+        snow();
+        hljs.initHighlightingOnLoad();
     });
 </script>
 </body>
