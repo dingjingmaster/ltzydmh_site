@@ -53,8 +53,10 @@ def load_uploaded_file(file, filePath, loaded):
             i = i.strip()
             arr = i.split("\t")
             loaded[arr[0]] = (arr[1], arr[2])
-    except:
-        print ("获取历史上传文件记录失败")
+    except Exception as ex:
+        print ("获取历史上传文件记录错误: ", end = "")
+        print (ex)
+        print ("\n")
     else:
         fr.close()
 
@@ -68,8 +70,10 @@ def save_uploaded_file(file, loaded):
         fr = open(file, 'wb')
         fileBuf = fileBuf.strip().encode("utf-8")
         fr.write(fileBuf)
-    except:
-        print ("获取历史上传文件记录失败")
+    except Exception as ex:
+        print ("保存历史上传文件错误: ", end = "")
+        print (ex)
+        print ("\n")
     else:
         fr.close()
 
@@ -82,11 +86,12 @@ def parse_file(filePath):
     pasKeyword = ""
     isBlogFile = False
     try:
-        fw = open(filePath, 'r', encoding='UTF-8')
+        fw = open(filePath, 'r', encoding="utf8")
         lines = fw.readlines()
         contentList = []
         for i in range(len(lines)):
-            line = lines[i].strip()
+            line = lines[i]
+            line = line.strip()
             if -1 != line.find('[title]'):
                 pasTitle = lines[i + 1].strip()
                 continue
@@ -109,50 +114,62 @@ def parse_file(filePath):
         if isBlogFile:
             for i in contentList:
                 pasContent += i
-    except:
-        print ("无法打开的文件" + file_path)
+    except Exception as ex:
+        print ("打开文件" + filePath + " 错误:", end=""),
+        print (ex)
+        print ("\n")
     else:
         fw.close()
-    return (pasTitle, pasSummary, pasStatus, pasCategory, pasKeyword, pasContent)
+    return (pasTitle, pasSummary\
+            , pasStatus, pasCategory\
+            , pasKeyword, pasContent)
 
 def execute_sql(cursor, sql):
+    res = None
     try:
         cursor.execute(sql)
         db.commit()
-    except:
-        print ("sql:" + sql + "\t 执行错误")
+        res = cursor.fetchall()
+    except Exception as ex:
+        print (ex)
+        #print ("sql:" + sql + "\t 执行错误")
         db.rollback()
-    return;
+    return res
 
 
-def ltzydmh_update_category(cursor):
-    sql = "UPDATE ltzydmh_summary SET category_num=category_num + 1"
+def insert_category(cursor, category):
+    sql = "INSERT INTO ltzydmh_passage_category \
+        (category, num) \
+        VALUES('%s', '%d')" % (category, 0)
+    try:
+        execute_sql(cursor, sql);
+        ltzydmh_update_category(cursor)
+    except:
+        execute_sql(cursor, sql);
+    return
+
+
+def update_summary(cursor):
+    res1 = None
+    res2 = None
+    categoryNum = 0
+    passageNum = 0
+    sql1 = "SELECT COUNT(*) FROM ltzydmh_passage_category"
+    sql2 = "SELECT COUNT(*) FROM ltzydmh_passage_content"
+    try:
+        res1 = execute_sql(cursor, sql1);
+        res2 = execute_sql(cursor, sql2);
+    except:
+        pass
+    categoryNum = res1[0][0]
+    passageNum = res2[0][0]
+    sql = "UPDATE ltzydmh_summary SET passage_num='%s', category_num='%s' WHERE id=id"\
+            % (passageNum, categoryNum)
     execute_sql(cursor, sql);
+    return
 
 
-def ltzydmh_update_passage(cursor):
-    sql = "UPDATE ltzydmh_summary SET passage_num=passage_num + 1"
-    execute_sql(cursor, sql);
-
-
-def ltzydmh_passage_info(cursor, title, summary, status, category):
-    djid = ""
-    create = ""
-    update = ""
-    md5 = hashlib.md5()
-    djid = "" + category + title
-    localtime = time.asctime(time.localtime(time.time()))
-    create = time.strftime("%Y%m%d%H%M%S", time.localtime())
-    update = create
-    md5.update(djid.encode('utf8'))
-    djid = md5.hexdigest()
-    sql = "INSERT INTO ltzydmh_passage_info \
-        (djid, name, summary, create_time, update_time, status, category, viewcount) \
-        VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')" % (djid, title, summary, create, update, status, category, 0)
-    execute_sql(cursor, sql);
-
-
-def ltzydmh_passage_content(cursor, title, category, keyword, content):
+def insert_content(cursor, title, category, keyword, content):
     djid = "" + category + title
     md5 = hashlib.md5()
     md5.update(djid.encode('utf8'))
@@ -161,26 +178,61 @@ def ltzydmh_passage_content(cursor, title, category, keyword, content):
         (djid, keyword, content) \
         VALUES('%s', '%s', '%s')" % (djid, keyword, content)
     execute_sql(cursor, sql);
+    return
 
 
-def ltzydmh_passage_category(cursor, category):
-    sql = "INSERT INTO ltzydmh_passage_category \
-        (category, num) \
-        VALUES('%s', '%d')" % (category, 1)
-    try:
-        execute_sql(cursor, sql);
-        ltzydmh_update_category(cursor)
-    except:
-        sql = "UPDATE ltzydmh_passage_category SET num=num+1 WHERE category=" + category
-        execute_sql(cursor, sql);
+def update_content(cursor, title, category, keyword, content):
+    djid = category + title
+    md5 = hashlib.md5()
+    md5.update(djid.encode('utf8'))
+    djid = md5.hexdigest()
+    sql = "UPDATE ltzydmh_passage_content SET keyword='%s', content='%s' WHERE djid='%s'" \
+            % (keyword, content, djid)
+    execute_sql(cursor, sql);
+    return
 
 
+def insert_info(cursor, title, summary, status, category, createTime, updateTime):
+    djid = ""
+    create = ""
+    update = ""
+    md5 = hashlib.md5()
+    djid = "" + category + title
+    md5.update(djid.encode('utf8'))
+    djid = md5.hexdigest()
+    sql = "INSERT INTO ltzydmh_passage_info \
+        (djid, name, summary, create_time, update_time, status, category, viewcount) \
+        VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')" \
+         % (djid, title, summary, createTime, updateTime, status, category, 0)
+    execute_sql(cursor, sql);
+    return
 
-def upload_passage(cursor, title, summary, status, category, keyword, content):
-    ltzydmh_passage_info(cursor, title, summary, status, category)
-    ltzydmh_passage_content(cursor, title, category, keyword, content)
-    ltzydmh_update_passage(cursor)
-    ltzydmh_passage_category(cursor, category)
+
+def update_info(cursor, title, summary, status, category, createTime, updateTime):
+    djid = ""
+    create = ""
+    update = ""
+    md5 = hashlib.md5()
+    djid = "" + category + title
+    md5.update(djid.encode('utf8'))
+    djid = md5.hexdigest()
+    sql = "UPDATE ltzydmh_passage_info SET name='%s', summary='%s', create_time='%s',\
+            update_time='%s', status='%s', category='%s' WHERE djid='%s'"\
+            % (title, summary, createTime, updateTime, status, category, djid)
+    execute_sql(cursor, sql);
+    return
+
+
+def insert_passage(cursor, title, summary, status, category, keyword, content, createTime, updateTime):
+    insert_content(cursor, title, category, keyword, content)
+    insert_info(cursor, title, summary, status, category, createTime, updateTime)
+    insert_category(cursor, category)
+
+
+def update_passage(cursor, title, summary, status, category, keyword, content, createTime, updateTime):
+    update_content(cursor, title, category, keyword, content)
+    update_info(cursor, title, summary, status, category, createTime, updateTime)
+    insert_category(cursor, category)
 
 
 
@@ -192,7 +244,6 @@ if __name__ == '__main__':
     uploadPath = basePath + uploadedFile                        # 暂存历史上传文件路径
     uploaded = {}                                               # 已经上传的
     fileList = []                                               # 将要上传或者更新的
-
     db = pymysql.connect(host='127.0.0.1', port=3306\
             , user='root', passwd='root', db='ltzydmh'\
             , charset='utf8')
@@ -201,13 +252,15 @@ if __name__ == '__main__':
     dir_files(basePath, fileList, uploaded)
     for files, filePath, createTime, updateTime, flag in fileList:
         pasTitle, pasSummary, pasStatus, pasCategory, pasWordkey, pasContent = parse_file(filePath)
-        '''
-        upload_passage(cur, pasTitle, pasSummary, pasStatus, pasCategory, pasWordkey, pasContent)
-        '''
+        if flag == "insert":
+            insert_passage(cur, pasTitle, pasSummary, pasStatus, pasCategory, pasWordkey, pasContent, createTime, updateTime)
+        elif flag == "update":
+            update_passage(cur, pasTitle, pasSummary, pasStatus, pasCategory, pasWordkey, pasContent, createTime, updateTime)
+        else:
+            continue
         uploaded[files] = (createTime, updateTime)
+    update_summary(cur)
     save_uploaded_file(uploadPath, uploaded)
-
     cur.close()
     db.close()
-
     exit (0)
