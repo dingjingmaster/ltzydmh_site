@@ -1,13 +1,5 @@
-@font-face {
-    font-family: chinese;
-    src: url('http://www.dingjingmaster.top/public/assets/fonts/chinese.ttf')
-}
-@font-face {
-    font-family: english;
-    src: url('http://www.dingjingmaster.top/public/assets/fonts/english.ttf')
-}
 body, font, p, h1, h2, h3, h4, h5, h6, code{
-    font-family: english, chinese;
+    font-family: sans-serif, Microsoft YaHei;
     font-weight: 600;
 }
 
