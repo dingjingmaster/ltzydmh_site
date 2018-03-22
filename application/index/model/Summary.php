@@ -21,17 +21,4 @@
          'prefix'       =>      '',
          'debug'        =>      true,
      ];
-     public function get_value() {
-         $res = $this::get('id');
-         $passage_num = $res['passage_num'];
-         $category_num = $res['category_num'];
-         $comment_num = $res['comment_num'];
-
-         $res = [
-             'passage'  =>      $passage_num,
-             'category' =>      $category_num,
-             'comment'  =>      $comment_num,
-         ];
-         return $res;
-     }
  }

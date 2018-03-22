@@ -31,19 +31,4 @@ class PassageInfo extends Model {
             $e->getMessage();
         }
     }
-
-    public function get_ten_passage($start) {
-        $res = '';
-        try {
-            $data = $this->limit($start, 10)->select();
-            $res = index_passage_html($data);
-        }catch (\mysqli_sql_exception $e) {
-            $e->getMessage();
-        }
-        $res = [
-          'content'     =>      $res,
-        ];
-
-        return $res;
-    }
 }

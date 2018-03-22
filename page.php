@@ -5,6 +5,8 @@ $page=$_GET['page'];
 $allcount= 100;
 $page_size =10;
 $page_show =5;
+$pagenav = '';
+
 echo '当前是第: ' . $page . '页';
 $page_count = ceil($allcount/$page_size);
 if($page <= 1 || $page == '') $page = 1;

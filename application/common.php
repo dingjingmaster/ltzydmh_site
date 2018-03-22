@@ -2,6 +2,48 @@
 
 use app\index\model\Click;
 
+/* 分页功能 */
+/**
+ *  @$curPage:          当前页数
+ *  @$totalNum:         总条数
+ *  @$showPage:         一次显示页数
+ *  @$everyPageNum:     每页展示条数
+ */
+function page_slip($curPage, $totalNum, $showPage, $everyPageNum) {
+    $html = '';
+    $totalPage = ceil($totalNum / $everyPageNum);
+    $pageNum = ceil($totalPage / $showPage);
+    /* 当前页数格式化 */
+    if($curPage <= 1 || $curPage == '') {
+        $curPage = 1;
+    } else if ($curPage >= $totalPage) {
+        $curPage = $totalPage;
+    }
+
+    $html .= '<li><a href="/index.php/pageturn/0">' . '首页' . '</a></li>';
+    $prePage = ($curPage <= 1) ? 1 : $curPage - 1;                              // 前一页
+    $nextPage = ($curPage >= $totalPage) ? $totalPage : $curPage + 1;           // 后一页
+    $html = $html . '<li class="arrow"><a href="/index.php/pageturn/' . $prePage . '">&laquo;</a></li>';                  // 前一页展示
+    /* 展示显示分页 */
+    $pageShowStart = (ceil($curPage / $showPage) - 1) * $showPage;
+    if ($showPage > $pageNum) {
+        $showPage = $pageNum;
+    }
+    /* 开始准备输出页数 */
+    for($i = 1; $i <= $showPage; $i++) {
+        $pageNow = $pageShowStart + $i;
+        if($curPage == $pageNow) {
+            $html = $html . '<li class="current"><a href="/index.php/pageturn/' . $pageNow . '">' . $pageNow . '</a></li>';
+        } else {
+            $html = $html . '<li><a href="/index.php/pageturn/' . $pageNow . '">' . $pageNow . '</a></li>';
+        }
+    }
+    $html .= '<li><a href="/index.php/pageturn/' . $nextPage . '"> &raquo; </a></li>';                              // 后一页展示
+    $html .= '<li><a href="/index.php/pageturn/' . $totalPage . '">' . '末页' . '</a></li>';                         // 末页展示
+    return $html;
+}
+
+
 function update_click_num() {
     $clk = new Click();
     $key = date('Ymd',time());
@@ -56,7 +98,7 @@ function index_passage_html($result) {
         $outBuf = $outBuf .
             '<article>'.
                 '<div class="th padding_line">'.
-                    '<h3><a id="passage_title" href="' . '/index.php/passage/' . $djid . '">' . $name . '</a></h3>'.
+                    '<h3><a id="passage_title" href="/index.php/passage/' . $djid . '">' . $name . '</a></h3>'.
                     '<span id="passage_category" class="space label info">' . $category . '</span>'.
                     '<span id="passage_status" class="space label alert">' . $status . '</span>'.
                     '<span id="passage_view" class="space label warning">' . $view . '</span>'.

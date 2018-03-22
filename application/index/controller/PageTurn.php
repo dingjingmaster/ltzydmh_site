@@ -1,15 +1,20 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: DingJing
+ * Date: 2018/3/22
+ * Time: 14:29
+ */
+
 namespace app\index\controller;
-use app\index\model\PassageInfo;
+use think\Request;
 use \think\Controller;
 use app\index\model\Summary;
+use app\index\model\PassageInfo;
 
-/**
- * Class Index
- * @package app\index\controller
- */
-class Index extends Controller {
-    public function index() {
+
+class PageTurn extends Controller {
+    public function page(Request $req) {
         $response = [];
         $categoryNum = 0;                                               // 分类数
         $commentNum = 0;                                                // 评论数

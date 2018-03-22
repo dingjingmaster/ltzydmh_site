@@ -11,7 +11,9 @@
 
 return [
     '/'                                 =>      'index/index',
+    'pageturn/:pageId'                  =>      'pageTurn/page',
     'passage/:pid'                      =>      'passage/read',
+
     /*
     '__pattern__' => [
         'name' => '\w+',
