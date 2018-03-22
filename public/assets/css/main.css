@@ -1,5 +1,10 @@
+@font-face {
+    font-family: Courier;
+    src: url('http://www.dingjingmaster.top/public/assets/fonts/Courier.ttf')
+}
 body, font, p, h1, h2, h3, h4, h5, h6, code{
-    font-family: monospace, DFKai-SB, STKaiti, KaiTi;
+    font-family: Courier;
+    font-weight: 600;
 }
 
 .padding_line {
