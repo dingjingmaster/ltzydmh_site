@@ -3,7 +3,7 @@
     src: url('http://www.dingjingmaster.top/public/assets/fonts/Courier.ttf')
 }
 body, font, p, h1, h2, h3, h4, h5, h6, code{
-    font-family: Courier;
+    font-family: Courier, STKaiti;
     font-weight: 600;
 }
 
