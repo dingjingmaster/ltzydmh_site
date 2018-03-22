@@ -1,10 +1,10 @@
 @font-face {
     font-family: chinese;
-    src: url('http://127.0.0.1/public/assets/fonts/chinese.ttf')
+    src: url('http://www.dingjingmaster.top/public/assets/fonts/chinese.ttf')
 }
 @font-face {
     font-family: english;
-    src: url('http://127.0.0.1/public/assets/fonts/english.ttf')
+    src: url('http://www.dingjingmaster.top/public/assets/fonts/english.ttf')
 }
 body, font, p, h1, h2, h3, h4, h5, h6, code{
     font-family: english, chinese;
