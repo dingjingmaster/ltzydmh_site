@@ -29,7 +29,6 @@ class Passage extends Controller {
             ]);
         update_click_num();
         $passageInfo->update_view($pid);
-
         return $this->fetch();
     }
 }
