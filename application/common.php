@@ -19,7 +19,7 @@ function page_slip($curPage, $totalNum, $showPage, $everyPageNum) {
     } else if ($curPage >= $totalPage) {
         $curPage = $totalPage;
     }
-
+    $html .= '<li><a>第' . $curPage . '/' . $totalPage . '页  ' . '</a></li>';
     $html .= '<li><a href="/index.php/pageturn/0">' . '首页' . '</a></li>';
     $prePage = ($curPage <= 1) ? 1 : $curPage - 1;                              // 前一页
     $nextPage = ($curPage >= $totalPage) ? $totalPage : $curPage + 1;           // 后一页
@@ -33,13 +33,14 @@ function page_slip($curPage, $totalNum, $showPage, $everyPageNum) {
     for($i = 1; $i <= $showPage; $i++) {
         $pageNow = $pageShowStart + $i;
         if($curPage == $pageNow) {
-            $html = $html . '<li class="current"><a href="/index.php/pageturn/' . $pageNow . '">' . $pageNow . '</a></li>';
+            $html .= '<li class="current"><a href="/index.php/pageturn/' . $pageNow . '">' . $pageNow . '</a></li>';
         } else {
-            $html = $html . '<li><a href="/index.php/pageturn/' . $pageNow . '">' . $pageNow . '</a></li>';
+            $html .= '<li><a href="/index.php/pageturn/' . $pageNow . '">' . $pageNow . '</a></li>';
         }
     }
-    $html .= '<li><a href="/index.php/pageturn/' . $nextPage . '"> &raquo; </a></li>';                              // 后一页展示
+    $html .= '<li><a href="/index.php/pageturn/' . $nextPage . '"> &raquo; </a></li>';                               // 后一页展示
     $html .= '<li><a href="/index.php/pageturn/' . $totalPage . '">' . '末页' . '</a></li>';                         // 末页展示
+    $html .= '<li><a>共' . $totalNum . '篇文章</a></li>';              // 文章统计
     return $html;
 }
 
