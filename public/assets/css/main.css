@@ -1,6 +1,5 @@
 body, font, p, h1, h2, h3, h4, h5, h6, code{
-    font-family: sans-serif, Microsoft YaHei;
-    font-weight: 600;
+    font-family: "Helvetica Neue","Helvetica","Arial","PingFang SC","Hiragino Sans GB", "Microsoft YaHei","WenQuanYi Micro Hei", sans-serif;
 }
 
 .padding_line {
