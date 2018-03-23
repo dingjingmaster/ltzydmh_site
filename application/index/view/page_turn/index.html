@@ -11,6 +11,15 @@
     <!-- CSS 文件 -->
     <link rel="stylesheet" href="{$host}/public/assets/css/foundation.css"/>
     <link rel="stylesheet" href="{$host}/public/assets/css/main.css"/>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116301846-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-116301846-1');
+    </script>
+
 </head>
 <body>
 <!-- 导航栏开始 -->
@@ -72,16 +81,6 @@
             <div class="pagination-centered">
                 <ul class="pagination">
                     {$pageContent}
-                    <!--
-
-                    <li class="arrow"><a href="#">&laquo;</a></li>
-                    <li class="current"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li class="arrow"><a href="#">&raquo;</a></li>
-                    -->
                 </ul>
             </div>
             <br><br>
