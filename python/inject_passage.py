@@ -140,7 +140,7 @@ def execute_sql(cursor, sql):
 def insert_category(cursor, category):
     sql = "INSERT INTO ltzydmh_passage_category \
         (category, num) \
-        VALUES('%s', '%d')" % (category, 0)
+        VALUES('%s', '%d')" % (pymysql.escape_string(category), 0)
     try:
         execute_sql(cursor, sql);
         ltzydmh_update_category(cursor)
@@ -163,7 +163,7 @@ def update_summary(cursor):
         pass
     categoryNum = res1[0][0]
     passageNum = res2[0][0]
-    sql = "UPDATE ltzydmh_summary SET passage_num='%s', category_num='%s' WHERE id=id"\
+    sql = "UPDATE ltzydmh_summary SET passage_num='%d', category_num='%d' WHERE id=id"\
             % (passageNum, categoryNum)
     execute_sql(cursor, sql);
     return
@@ -176,7 +176,9 @@ def insert_content(cursor, title, category, keyword, content):
     djid = md5.hexdigest()
     sql = "INSERT INTO ltzydmh_passage_content \
         (djid, keyword, content) \
-        VALUES('%s', '%s', '%s')" % (djid, keyword, content)
+        VALUES('%s', '%s', '%s')" % (pymysql.escape_string(djid)\
+        , pymysql.escape_string(keyword)\
+        , pymysql.escape_string(content))
     execute_sql(cursor, sql);
     return
 
@@ -187,7 +189,9 @@ def update_content(cursor, title, category, keyword, content):
     md5.update(djid.encode('utf8'))
     djid = md5.hexdigest()
     sql = "UPDATE ltzydmh_passage_content SET keyword='%s', content='%s' WHERE djid='%s'" \
-            % (keyword, content, djid)
+            % (pymysql.escape_string(keyword)\
+            , pymysql.escape_string(content)\
+            , pymysql.escape_string(djid))
     execute_sql(cursor, sql);
     return
 
@@ -203,7 +207,10 @@ def insert_info(cursor, title, summary, status, category, createTime, updateTime
     sql = "INSERT INTO ltzydmh_passage_info \
         (djid, name, summary, create_time, update_time, status, category, viewcount) \
         VALUES('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')" \
-         % (djid, title, summary, createTime, updateTime, status, category, 0)
+         % (pymysql.escape_string(djid), pymysql.escape_string(title)\
+         , pymysql.escape_string(summary), pymysql.escape_string(createTime)\
+         , pymysql.escape_string(updateTime), pymysql.escape_string(status)\
+         , pymysql.escape_string(category), 0)
     execute_sql(cursor, sql);
     return
 
@@ -218,7 +225,10 @@ def update_info(cursor, title, summary, status, category, createTime, updateTime
     djid = md5.hexdigest()
     sql = "UPDATE ltzydmh_passage_info SET name='%s', summary='%s', create_time='%s',\
             update_time='%s', status='%s', category='%s' WHERE djid='%s'"\
-            % (title, summary, createTime, updateTime, status, category, djid)
+            % (pymysql.escape_string(title), pymysql.escape_string(summary)\
+            , pymysql.escape_string(createTime), pymysql.escape_string(updateTime)\
+            , pymysql.escape_string(status), pymysql.escape_string(category)\
+            , pymysql.escape_string(djid))
     execute_sql(cursor, sql);
     return
 
