@@ -16,7 +16,7 @@ class Index extends Controller {
         $startPassage = 0;                                              // 请求文章开始
         $totalPassage = 0;                                              // 数据库中文章总数
         $showPage = 6;                                                  // 每次展示的页数 1,2,3,4,5
-        $everyPageNum = 16;                                             // 每页展示条数
+        $everyPageNum = 9;                                              // 每页展示条数
         $curPage = 0;                                                   // 当前第几页
 
         $mainContent = '';                                              // 主页展示
