@@ -11,8 +11,8 @@ use app\index\model\Click;
  */
 function page_slip($curPage, $totalNum, $showPage, $everyPageNum) {
     $html = '';
-    $totalPage = ceil($totalNum / $everyPageNum);
-    $pageNum = ceil($totalPage / $showPage);
+    $totalPage = ceil($totalNum / $everyPageNum);                       // 总页数
+
     /* 当前页数格式化 */
     if($curPage <= 1 || $curPage == '') {
         $curPage = 1;
@@ -23,12 +23,16 @@ function page_slip($curPage, $totalNum, $showPage, $everyPageNum) {
     $html .= '<li><a href="/index.php/pageturn/0">' . '首页' . '</a></li>';
     $prePage = ($curPage <= 1) ? 1 : $curPage - 1;                              // 前一页
     $nextPage = ($curPage >= $totalPage) ? $totalPage : $curPage + 1;           // 后一页
-    $html = $html . '<li class="arrow"><a href="/index.php/pageturn/' . $prePage . '">&laquo;</a></li>';                  // 前一页展示
+    $html .= '<li class="arrow"><a href="/index.php/pageturn/' . $prePage . '">&laquo;</a></li>';                  // 前一页展示
     /* 展示显示分页 */
     $pageShowStart = (ceil($curPage / $showPage) - 1) * $showPage;
-    if ($showPage > $pageNum) {
-        $showPage = $pageNum;
+    $pageShowEnd = ($pageShowStart + $showPage) > $totalPage ? $totalPage - ($pageShowStart + $showPage - $totalPage) - 1: $showPage;
+    if ($showPage > $totalPage) {
+        $showPage = $totalPage;
+    } else if ($showPage > $pageShowEnd) {
+        $showPage = $pageShowEnd;
     }
+
     /* 开始准备输出页数 */
     for($i = 1; $i <= $showPage; $i++) {
         $pageNow = $pageShowStart + $i;

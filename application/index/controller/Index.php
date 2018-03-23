@@ -35,6 +35,7 @@ class Index extends Controller {
         /* 主页展示及分页 */
         $res = $passageInfo->limit($startPassage, $everyPageNum)->select();
         $mainContent = index_passage_html($res);
+
         $splitPageContent = page_slip($curPage, $totalPassage, $showPage, $everyPageNum);
 
         $response = [

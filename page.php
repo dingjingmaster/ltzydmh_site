@@ -3,7 +3,7 @@ header ( 'Content-Type: text/html; charset=utf-8' );
 //分页
 $page=$_GET['page'];
 $allcount= 100;
-$page_size =10;
+$page_size =9;
 $page_show =5;
 $pagenav = '';
 

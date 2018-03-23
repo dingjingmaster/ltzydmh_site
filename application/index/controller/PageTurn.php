@@ -30,6 +30,9 @@ class PageTurn extends Controller {
         update_click_num();
         $summary = new Summary();
         $passageInfo = new PassageInfo();
+        $curPage = $req->param('pageId');
+        $startPassage = ($curPage - 1) * $everyPageNum;
+        $startPassage = ($startPassage < 0) ? 0 : $startPassage;
 
         /* 侧边栏信息 */
         $res = $summary::get('id');
