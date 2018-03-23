@@ -26,7 +26,8 @@ function page_slip($curPage, $totalNum, $showPage, $everyPageNum) {
     $html .= '<li class="arrow"><a href="/index.php/pageturn/' . $prePage . '">&laquo;</a></li>';                  // 前一页展示
     /* 展示显示分页 */
     $pageShowStart = (ceil($curPage / $showPage) - 1) * $showPage;
-    $pageShowEnd = ($pageShowStart + $showPage) > $totalPage ? $totalPage - ($pageShowStart + $showPage - $totalPage) - 1: $showPage;
+    //$pageShowEnd = ($pageShowStart + $showPage) > $totalPage ? $totalPage - ($pageShowStart + $showPage - $totalPage) - 1: $showPage;
+    $pageShowEnd = ($pageShowStart + $showPage) > $totalPage ? $totalPage * 2 - $pageShowStart - $showPage - 1: $showPage;
     if ($showPage > $totalPage) {
         $showPage = $totalPage;
     } else if ($showPage > $pageShowEnd) {
