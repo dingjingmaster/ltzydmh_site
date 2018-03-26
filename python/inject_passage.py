@@ -254,8 +254,8 @@ if __name__ == '__main__':
     uploadPath = basePath + uploadedFile                        # 暂存历史上传文件路径
     uploaded = {}                                               # 已经上传的
     fileList = []                                               # 将要上传或者更新的
-    db = pymysql.connect(host='67.218.137.148', port=3306\
-            , user='root', passwd='dingjing1009.', db='ltzydmh'\
+    db = pymysql.connect(host=ip, port=3306\
+            , user='root', passwd=passwd, db='ltzydmh'\
             , charset='utf8')
     cur = db.cursor()
     load_uploaded_file(uploadedFile, uploadPath, uploaded)
