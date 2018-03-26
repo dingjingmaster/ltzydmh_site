@@ -7,6 +7,9 @@ body, font, p, h1, h2, h3, h4, h5, h6, code{
     font-weight: 600;
 }
 
+.MathJax{outline:0;}
+.MathJax span{font-size:15px;}
+
 .padding_line {
     width: 100%;
 }
