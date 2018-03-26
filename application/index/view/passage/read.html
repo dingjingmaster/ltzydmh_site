@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{$host}/public/assets/css/foundation.css"/>
     <link rel="stylesheet" href="{$host}/public/assets/css/main.css"/>
     <link rel="stylesheet" href="{$host}/public/assets/css/styles/foundation.css"/>
+    <link rel="dns-prefetch" href="//cdn.mathjax.org" />    <!-- 数学公式 -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116301846-1"></script>
     <script>
@@ -126,11 +127,32 @@
 <script src="{$host}/public/assets/js/vendor/modernizr.js"></script>
 <script src="{$host}/public/assets/js/snow.js"></script>
 <script src="{$host}/public/assets/js/highlight.pack.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    showProcessingMessages: false,
+    messageStyle: "none",
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+        inlineMath:  [ ["$", "$"] ],
+        displayMath: [ ["$$","$$"] ],
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre','code','a'],
+        ignoreClass:"comment-content"
+    },
+    "HTML-CSS": {
+        availableFonts: ["STIX","TeX"],
+        showMathMenu: false
+    }
+});
+MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+</script>
+<script src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> <!-- 数学公式 -->
 <script>
     $(document).ready(function(){
         $(document).foundation();
         snow();
         hljs.initHighlightingOnLoad();
+        InstantClick.init();
     });
 </script>
 </body>

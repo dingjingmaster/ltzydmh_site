@@ -1,38 +1,31 @@
-<?php
-header ( 'Content-Type: text/html; charset=utf-8' );
-//分页
-$page=$_GET['page'];
-$allcount= 100;
-$page_size =9;
-$page_show =5;
-$pagenav = '';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>demo</title>
 
-echo '当前是第: ' . $page . '页';
-$page_count = ceil($allcount/$page_size);
-if($page <= 1 || $page == '') $page = 1;
-if($page >= $page_count) $page = $page_count;
-$pre_page = ($page == 1)? 1 : $page - 1;
-$next_page= ($page == $page_count)? $page_count : $page + 1 ;
-$pagenav .= "第 $page/$page_count 页 共 $allcount 条记录 ";
-$pagenav .= "<a href='?page=1'>首页</a> ";
-$pagenav .= "<a href='?page=$pre_page'>前一页</a> ";
-//当前显示的开始
-$page_show_start = (ceil($page/$page_show)-1)*$page_show;
-//显示分页
-$page_show_str = '';
-if($page_show>$page_count){
-  $page_show = $page_count;
-}
-for($j=1;$j<=$page_show;$j++){
-  $page_show_now = $page_show_start+$j;
-  if($page==$page_show_now){
-    $page_show_str .= "<a href='?page=$page_show_now'><strong>$page_show_now</strong></a> ";
-  }else{
-    $page_show_str .= "<a href='?page=$page_show_now'>$page_show_now</a> ";
-  }
-}
-$pagenav.=$page_show_str;
-$pagenav .= "<a href='?page=$next_page'>后一页</a> ";
-$pagenav .= "<a href='?page=$page_count'>末页</a>";
-echo '<div class="page">'.$pagenav.'</div>' ;
-?>
+</head> 
+<body>
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://http-www-dingjingmaster-top.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+</body> 
+</html> 
