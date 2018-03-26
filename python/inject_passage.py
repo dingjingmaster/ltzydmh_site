@@ -248,8 +248,12 @@ def update_passage(cursor, title, summary, status, category, keyword, content, c
 
 if __name__ == '__main__':
     basePath = "G:/OneDrive/www/博客文章/"
-    if len(sys.argv) == 2:
+    ip = ''
+    passwd = ''
+    if len(sys.argv) == 4:
         basePath = sys.argv[1]
+        ip = sys.argv[2]
+        passwd = sys.argv[3]
     uploadedFile = "uploaded.txt"
     uploadPath = basePath + uploadedFile                        # 暂存历史上传文件路径
     uploaded = {}                                               # 已经上传的
